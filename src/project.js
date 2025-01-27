@@ -8,20 +8,17 @@ export function createProject(title, description, dueDate, toDos, isComplete = f
         toggleComplete() {
             this.isComplete = !this.isComplete;
         },
-        updateProject() {
-
+        updateProject(newTitle, newDescription, newDueDate, newPriority) {
+            this.title = newTitle;
+            this.desc = newDescription;
+            this.dueDate = newDueDate;
+            this.priority = newPriority;
         },
-        deleteProject() {
-        
+        addTask(task) {
+            toDos.push(task)
         },
-        addTask() {
-        
+        deleteTask(task) {
+            //to be implemented
         },
-        deleteTask() {
-        
-        },
-        markComplete() {
-        
-        }
     };
 };

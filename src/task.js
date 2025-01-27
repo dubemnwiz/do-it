@@ -8,16 +8,11 @@ export function createTask(title, description, dueDate, priority, isComplete = f
         toggleComplete() {
             this.isComplete = !this.isComplete;
         },
-        updateTask() {
-
+        updateTask(newTitle, newDescription, newDueDate, newPriority) {
+            this.title = newTitle;
+            this.desc = newDescription;
+            this.dueDate = newDueDate;
+            this.priority = newPriority;
         },
-        
-        deleteTask() {
-        
-        },
-        
-        markComplete() {
-        
-        }
     };
 };

@@ -18,7 +18,8 @@ export function createProject(title, description, dueDate, toDos, isComplete = f
             toDos.push(task)
         },
         deleteTask(task) {
-            //to be implemented
+            const taskIndex = toDos.indexOf(task.name);
+            toDos.splice(taskIndex, 1);
         },
     };
 };

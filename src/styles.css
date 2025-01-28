@@ -1,3 +1,79 @@
+* {
+    margin: 0;
+}
+
 body {
     background-color: lavender;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.container {
+    display: flex;
+    width: 90vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    gap: 15px;
+}
+
+.sidebar {
+    height: 80vh;
+    background-color: azure;
+    flex: 0.8;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.currentProject {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    background-color: azure;
+    flex: 1.2;
+    border-radius: 10px;
+    padding: 15px;
+    gap: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.currentTask {
+    height: 80vh;
+    background-color: azure;
+    flex: 0.8;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.taskCard {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 10px;
+    align-items: center;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 6px 0 rgba(0, 0, 0, 0.19);
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    justify-self: center;
+}
+
+#taskTitle {
+    font-weight: 600;
+
+}
+
+#taskDate {
+    font-size: 0.8em;
 }

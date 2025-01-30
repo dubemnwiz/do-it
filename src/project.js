@@ -1,13 +1,7 @@
-export function createProject(title, description, dueDate, toDos, isComplete = false) {
+export function createProject(title, toDos) {
     return {
         title, 
-        description, 
-        dueDate, 
-        toDos, 
-        isComplete,
-        toggleComplete() {
-            this.isComplete = !this.isComplete;
-        },
+        toDos,
         updateProject(newTitle, newDescription, newDueDate, newPriority) {
             this.title = newTitle;
             this.desc = newDescription;

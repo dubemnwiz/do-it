@@ -1,25 +1,69 @@
 import './styles.css';
 import { createTask } from './task';
 import { createProject } from './project';
+import editImg from "./assets/edit.png";
+import deleteImg from "./assets/delete.png";
 
-console.log("Connected...");
-const laundryTask = createTask('Wash clothes', 'Put white then colors', 'Tommorrow', 'Medium');
-const runningTask = createTask('Go for a run', 'Run 5 miles', 'Tommorrow', 'Medium');
-const homeworkTask = createTask('Do AI Homework', 'Finish Assignment 1', 'Next Week', 'Medium');
-
-const daily = createProject('Daily', "Daily To-Dos", "None", []);
-console.log(daily.toDos);
-daily.addTask(laundryTask);
-daily.addTask(runningTask);
-daily.addTask(homeworkTask);
-console.log(daily.toDos);
-daily.deleteTask(laundryTask);
-console.log(daily.toDos);
+const addProjectBtn = document.getElementById('addProjectBtn');
+const editProjectBtns = document.querySelectorAll('#editProjectBtn');
+const deleteProjectBtns = document.querySelectorAll('#deleteProjectBtn');
+const addTaskBtn = document.getElementById('addTaskBtn');
+const editTaskBtns = document.querySelectorAll('#editTaskBtn');
+const deleteTaskBtns = document.querySelectorAll('#deleteTaskBtn');
+const projectSection = document.querySelector('.projects');
 
 
-if (process.env.NODE_ENV !== 'production') {
-    console.log('Looks like we are in development mode!');
-}
-if (process.env.NODE_ENV === 'production') {
-    console.log('Looks like we are in production mode!');
-}
+addProjectBtn.addEventListener('click', (e) => {
+    //implement prompt to pick the project name and push into project object factory
+    const newProject = createProject('Databases');
+    const div = document.createElement('div');
+    div.classList.add('projectCard');
+    div.innerHTML = `<div class="projectTitle">${newProject.title}</div> 
+                    <img id="editProjectBtn" src="${editImg}" height="24px" width="24px"/> 
+                    <img id="deleteProjectBtn" src="${deleteImg}" height="24px" width="24px"/>`;
+    projectSection.appendChild(div);
+    //fix the newly created elements not having event listener
+});
+
+editProjectBtns.forEach(button => {
+    button.addEventListener('click', (e) => {
+        console.log(e.target);
+        console.log('clicked edit project');
+        // const projCard = e.target.parentElement;
+        // projCard.remove();
+    });
+});
+
+deleteProjectBtns.forEach(button => {
+    button.addEventListener('click', (e) => {
+        console.log(e.target);
+        console.log('clicked delete project');
+        // const projCard = e.target.parentElement;
+        // projCard.remove();
+    });
+});
+
+addTaskBtn.addEventListener('click', (e) => {
+    console.log(e.target);
+    console.log('clicked add task');
+    // const projCard = e.target.parentElement;
+    // projCard.remove();
+});
+
+editTaskBtns.forEach(button => {
+    button.addEventListener('click', (e) => {
+        console.log(e.target);
+        console.log('clicked edit task');
+        // const projCard = e.target.parentElement;
+        // projCard.remove();
+    });
+});
+
+deleteTaskBtns.forEach(button => {
+    button.addEventListener('click', (e) => {
+        console.log(e.target);
+        console.log('clicked delete task');
+        // const projCard = e.target.parentElement;
+        // projCard.remove();
+    });
+});

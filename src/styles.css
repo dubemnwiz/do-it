@@ -7,6 +7,15 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.doit {
+    font-size: 32px;
+    font-weight: 600;
+    color: rgb(54, 13, 54);
+    position: relative;
+    top: 40px;
+    left: 90px;
+}
+
 .container {
     display: flex;
     width: 90vw;
@@ -56,8 +65,11 @@ body {
 }
 
 .title {
+    display: flex;
     font-size: 1.5em;
     font-weight: 600;
+    align-items: center;
+    justify-content:space-between;
 }
 
 .projects {
@@ -80,6 +92,10 @@ body {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
+.projectTitle {
+    flex: 1.5;
+}
+
 .cards {
     display: flex;
     overflow-y: scroll;
@@ -98,6 +114,10 @@ body {
     gap: 10px;
     align-items: center;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.taskInfo {
+    flex: 1.5;
 }
 
 .currentTaskCard {
@@ -120,4 +140,9 @@ input[type="checkbox"] {
 
 #taskDate {
     font-size: 0.8em;
+}
+
+
+#addProjectBtn {
+    justify-self: flex-end;
 }

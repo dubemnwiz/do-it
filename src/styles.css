@@ -11,9 +11,10 @@ body {
     font-size: 32px;
     font-weight: 600;
     color: rgb(54, 13, 54);
-    position: relative;
-    top: 40px;
+    position: absolute;
+    top: 20px;
     left: 90px;
+    margin-bottom: -20px;
 }
 
 .container {
@@ -145,4 +146,24 @@ input[type="checkbox"] {
 
 #addProjectBtn {
     justify-self: flex-end;
+}
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

@@ -1,4 +1,4 @@
-export function createProject(title, toDos) {
+export function createProject(title = 'Untitled Project', toDos) {
     return {
         title, 
         toDos,

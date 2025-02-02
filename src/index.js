@@ -12,11 +12,11 @@ const projectSection = document.querySelector('.projects');
 
 let currentTitleElement = null;
 
-document.body.addEventListener("click", (e) => {
+document.querySelector('.sidebar').addEventListener("click", (e) => {
     if (e.target.id === 'deleteProjectBtn') {
         const projectCard = e.target.parentElement;
         projectCard.remove();
-    } else if (e.target.id === 'editProjectBtn') {
+    } else if (e.target && e.target.id === 'editProjectBtn') {
         document.querySelectorAll("#editProjectBtn").forEach(button => {
             button.addEventListener("click", function () {
               const projectCard = this.closest(".projectCard");
@@ -71,6 +71,11 @@ document.getElementById("name-input").addEventListener("keydown", function (even
       document.getElementById("save-btn").click();
     }
 });
+
+
+
+
+
 
 addTaskBtn.addEventListener('click', (e) => {
     console.log(e.target);

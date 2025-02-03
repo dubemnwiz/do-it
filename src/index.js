@@ -8,6 +8,7 @@ const addProjectBtn = document.getElementById('addProjectBtn');
 const addTaskBtn = document.getElementById('addTaskBtn');
 const projectSection = document.querySelector('.projects');
 const taskSection = document.querySelector('.currentProject');
+const infoSection = document.querySelector('.currentTask');
 
 const task1 = createTask("Database 1", "Desc", 'August 8th, 2025', 'High');
 const task2 = createTask("Not a Database 2", "Desc", 'August 8th, 2025', 'High');
@@ -19,7 +20,7 @@ const Project2 = createProject('Website Project', [task1]);
 let projects = [daily, databaseProject, Project2];
  
 // ************************      Project      *************************
-
+let currentProject = 'Daily';
 let currentProjectTitle = null;
 
 document.querySelector('.sidebar').addEventListener("click", (e) => {
@@ -53,10 +54,10 @@ document.querySelector('.sidebar').addEventListener("click", (e) => {
         for (const project of projects) {
             if (project.title === projectName) {
                 newTasksToLoad = project.loadToDos();
-                console.log(newTasksToLoad);
             }
         }
         taskSection.appendChild(newTasksToLoad);
+        currentProject = projectName;
     }
 });
 
@@ -78,7 +79,6 @@ document.getElementById("saveProj").addEventListener("click", function () {
                 <img id="deleteProjectBtn" src="${deleteImg}" height="24px" width="24px"/>`;
     projectSection.appendChild(div);
     document.getElementById("newProj").style.display = "none";
-    console.log(projects);
 });
 document.getElementById("cancelProj").addEventListener("click", function () {
     document.getElementById("newProj").style.display = "none";
@@ -115,6 +115,21 @@ let currentTaskDate = null;
 document.querySelector('.currentProject').addEventListener("click", (e) => {
     if (e.target.id === 'deleteTaskBtn') {
         const taskCard = e.target.parentElement;
+        const taskTitle = taskCard.querySelector('#taskTitle').textContent;
+        taskCard.remove();
+        let idx = 0;
+        for (let i = 0; i < projects.length; i++) {
+            if (projects[i].title === currentProject) {
+                idx = i; 
+            }
+        };
+        let taskIdx = 0;
+        for (let i = 0; i < projects[idx].toDos.length; i++) {
+            if (projects[idx].toDos[i].title === taskTitle) {
+                taskIdx = i;
+            }
+        }
+        projects[idx].toDos.splice(taskIdx, 1);
         taskCard.remove();
     } else if (e.target && e.target.id === 'editTaskBtn') {
         const taskCard = e.target.closest(".taskCard");
@@ -123,8 +138,45 @@ document.querySelector('.currentProject').addEventListener("click", (e) => {
         document.getElementById("editTask").style.display = "block";
         document.getElementById("editTaskName").value = currentTaskName.textContent;
         document.getElementById("editTaskName").focus();
-    } else if ('projectCard' in e.target.classList) {
-        console.log('project clicked');
+    } else if (e.target.className === 'taskCard' || e.target.id === 'taskTitle' || e.target.id === 'taskDate') {
+        const taskCard = e.target.closest('.taskCard');
+        const taskTitle = taskCard.querySelector('#taskTitle').textContent;
+        console.log(taskTitle);
+        let idx = 0;
+        for (let i = 0; i < projects.length; i++) {
+            if (projects[i].title === currentProject) {
+                idx = i; 
+            }
+        };
+        let taskIdx = 0;
+        for (let i = 0; i < projects[idx].toDos.length; i++) {
+            if (projects[idx].toDos[i].title === taskTitle) {
+                taskIdx = i;
+            }
+        }
+        const task = projects[idx].toDos[taskIdx];
+        const title = task.title;
+        const desc = task.description;
+        const date = task.dueDate;
+        const priority = task.priority;
+        const currTaskTitle = document.getElementById('currentTaskTitle');
+        currTaskTitle.remove();
+        const currTaskCard = document.querySelector('.currentTaskCard');
+        currTaskCard.remove();
+        
+        const info = document.createElement('div');
+        info.classList.add('title');
+        info.id = 'currentTaskTitle';
+        info.textContent = title;
+
+        const infoTitle = document.createElement('div');
+        infoTitle.classList.add('currentTaskCard');
+        infoTitle.innerHTML = `<div id="taskDescription"><strong>Description:</strong> ${desc}</div>
+                <div id="taskDueDate"><strong>Due:</strong> ${date}</div>
+                <div id="taskPriority"><strong>Priority Level:</strong> ${priority}</div>`
+
+        infoSection.appendChild(info);
+        infoSection.appendChild(infoTitle);
     }
 });
 
@@ -146,8 +198,41 @@ document.getElementById("editTaskName").addEventListener("keydown", function (ev
 
 
 addTaskBtn.addEventListener('click', (e) => {
-    console.log(e.target);
-    console.log('clicked add task');
-    // const projCard = e.target.parentElement;
-    // projCard.remove();
+    document.getElementById("newTask").style.display = "block";
+    document.getElementById("newTaskName").value = 'Untitled Task';
+    document.getElementById("newTaskName").focus();
+    document.getElementById("newTaskName").select();
+});
+
+document.getElementById("saveNewTask").addEventListener("click", function () {
+    const newTitle = document.getElementById("newTaskName").value.trim();
+    const newDesc = document.getElementById("newDescription").value.trim();
+    const newDate = document.getElementById("newDate").value.trim();
+    const newPrio = document.getElementById("newPriority").value.trim();
+
+    const newTask = createTask(newTitle, newDesc, newDate, newPrio);
+    for (const project of projects) {
+        if (project.title === currentProject) {
+            project.toDos.push(newTask);
+        }
+    }
+    const taskCard = document.createElement('div');
+    taskCard.classList.add('taskCard');
+    taskCard.innerHTML = `<input type="checkbox" id="taskCheck">
+                            <div class="taskInfo">
+                                <div id="taskTitle">${newTitle}</div>
+                                <div id="taskDate">${newDate}</div></div>
+                            <img id="editTaskBtn" src="${editImg}" height="24px" width="24px"/> 
+                            <img id="deleteTaskBtn" src="${deleteImg}" height="24px" width="24px"/>`;
+    const tasks = document.querySelector('.cards');
+    tasks.appendChild(taskCard);
+    document.getElementById("newTask").style.display = "none";
+});
+document.getElementById("cancelNewTask").addEventListener("click", function () {
+    document.getElementById("newTask").style.display = "none";
+});
+document.getElementById("newTaskName").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      document.getElementById("saveNewTask").click();
+    }
 });

@@ -73,10 +73,40 @@
     </div>
     <div id="newProj" class="popup">
         <div class="popup-content">
-          <label for="projInput">Edit Project Name:</label>
+          <label for="projInput">Set Project Name:</label>
           <input type="text" id="projInput" placeholder="Enter Project Title">
           <button id="saveProj">Save</button>
           <button id="cancelProj">Cancel</button>
+        </div>
+    </div>
+    <div id="newTask" class="popup">
+        <div class="popup-content">
+          <label for="newTaskName">Set Task Name:</label>
+          <input type="text" id="newTaskName" placeholder="Enter Task Title">
+          <button id="saveNewTask">Save</button>
+          <button id="cancelNewTask">Cancel</button>
+        </div>
+    </div>
+    <div id="editTask" class="popup">
+        <div class="popup-content">
+          <label for="editTaskName">Edit Task Name:</label>
+          <input type="text" id="editTaskName" placeholder="Edit Task Title">
+          <label for="editDescription">Description:</label>
+          <input type="text" id="editDescription" placeholder="Edit Task Description">
+
+          <label for="editPriority">Priority:</label>
+          <select id="editPriority">
+            <option value="">--Please choose an option--</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+
+          <label for="editDate">Due Date:</label>
+          <input type="date" id="editDate" value="2025-01-01" min="2025-01-01" />
+
+          <button id="saveEditTask">Save</button>
+          <button id="cancelEditTask">Cancel</button>
         </div>
     </div>
 </body>

@@ -4,21 +4,33 @@ import { createProject } from './project';
 import editImg from "./assets/edit.png";
 import deleteImg from "./assets/delete.png";
 
+// To FIX / ADD
+// Date Formatting
+// Adding LocalStorage
+// Editing Project updates the actual project
+// Editing Task updates the actual task
+// Input validation
+// Priority level color?
+// Clean up code
+
 const addProjectBtn = document.getElementById('addProjectBtn');
 const addTaskBtn = document.getElementById('addTaskBtn');
 const projectSection = document.querySelector('.projects');
 const taskSection = document.querySelector('.currentProject');
 const infoSection = document.querySelector('.currentTask');
 
-const task1 = createTask("Database 1", "Desc", 'August 8th, 2025', 'High');
-const task2 = createTask("Not a Database 2", "Desc", 'August 8th, 2025', 'High');
-const dailyTask1 = createTask("Brush Teeth", "Desc", 'August 8th, 2025', 'High');
-const dailyTask2 = createTask("Go to Gym", "Desc", 'August 8th, 2025', 'High');
+const task1 = createTask("Create EERD", "Read description given", 'August 8th, 2025', 'High');
+const task2 = createTask("Draft Schema", "Use description given", 'August 10th, 2025', 'High');
+const dailyTask1 = createTask("Brush Teeth", "Start your day", 'August 8th, 2025', 'Low');
+const dailyTask2 = createTask("Go to Gym", "Hit arms and shoulders", 'August 8th, 2025', 'Medium');
 const daily = createProject('Daily', [dailyTask1, dailyTask2])
 const databaseProject = createProject('Database Project', [task1, task2]);
 const Project2 = createProject('Website Project', [task1]);
 let projects = [daily, databaseProject, Project2];
- 
+
+const initialTasksToLoad = daily.loadToDos();
+const tasks = taskSection.querySelector('.cards');
+tasks.appendChild(initialTasksToLoad); 
 // ************************      Project      *************************
 let currentProject = 'Daily';
 let currentProjectTitle = null;
@@ -108,8 +120,6 @@ document.getElementById("name-input").addEventListener("keydown", function (even
 // ****************************************************************************
 
 let currentTaskName = null;
-let currentTaskDescription = null;
-let currentTaskPriority = null;
 let currentTaskDate = null;
 
 document.querySelector('.currentProject').addEventListener("click", (e) => {

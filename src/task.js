@@ -1,8 +1,12 @@
+import {format} from 'date-fns';
+
 export function createTask(title, description, dueDate, priority, isComplete = false) {
+    // const date = new Date(dueDate);
+    // const formattedDate = format(date, 'MMMM do, yyyy');
     return {
         title, 
         description, 
-        dueDate, 
+        dueDate,
         priority, 
         isComplete,
         toggleComplete() {
